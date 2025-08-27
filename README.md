@@ -1,4 +1,4 @@
-# bun-react-template
+# Weekly Calendar Planner
 
 To install dependencies:
 
@@ -16,6 +16,12 @@ To run for production:
 
 ```bash
 bun start
+```
+
+To build github pages:
+
+```bash
+bun build src/index.html --minify --outdir=docs
 ```
 
 This project was created using `bun init` in bun v1.2.16. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

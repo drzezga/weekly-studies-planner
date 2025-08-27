@@ -40,7 +40,7 @@ export default function CalendarView({ events, importCSV, exportCSV, toggleSelec
 
     return events.flatMap(
       (ev, i) =>
-        ev.hidden
+        ev.hidden // n^2 ugh
           || events.some((ev2, j) => events[j].selected && (j !== i) && (ev.name === ev2.name))
           ? [] :
           ev.occurences.map(occurence => {
@@ -121,7 +121,6 @@ export default function CalendarView({ events, importCSV, exportCSV, toggleSelec
       eventClick={(arg: EventClickArg) => {
         let id = parseInt(arg.event.id.split("::")[0]);
         toggleSelectEvent(id);
-
       }}
       weekends={showWeekend}
       events={parsedEvents}
