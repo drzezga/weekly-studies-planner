@@ -21,7 +21,7 @@ bun start
 To build github pages:
 
 ```bash
-bun build src/index.html --minify --outdir=docs
+bun build src/index.html --minify --outdir=dist
 ```
 
 This project was created using `bun init` in bun v1.2.16. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
