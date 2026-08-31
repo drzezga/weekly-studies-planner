@@ -88,11 +88,11 @@ export default function CalendarView({ events, importCSV, exportCSV, toggleSelec
       headerToolbar={{ center: "", end: "", left: "importCSV exportCSV", right: "showWeekend + -", start: "" }}
       customButtons={{
         "+": {
-          text: "+",
+          text: "🔎+",
           click: zoomIn
         },
         "-": {
-          text: "-",
+          text: "🔎-",
           click: zoomOut
         },
         showWeekend: {
@@ -100,11 +100,11 @@ export default function CalendarView({ events, importCSV, exportCSV, toggleSelec
           click: () => toggleWeekend()
         },
         importCSV: {
-          text: "Import CSV",
+          text: "Import JSON",
           click: importCSV
         },
         exportCSV: {
-          text: "Export CSV",
+          text: "Export JSON",
           click: exportCSV
         },
 

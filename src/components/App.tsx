@@ -78,10 +78,48 @@ export function App() {
     setEvents(updatedEvents);
   };
 
+  const exportEventsToJSON = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(events));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "events.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
+
+  const importEventsFromJSON = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+
+    input.onchange = (event: any) => {
+      handleFileUpload(event);
+    };
+    input.click();
+  };
+
+  const handleFileUpload = (event: any) => {
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      if (e.target && e.target.result) {
+        try {
+          const importedEvents: MyEvent[] = JSON.parse(e.target.result as string);
+          setEvents(importedEvents);
+        } catch (error) {
+          alert("Invalid JSON file");
+        }
+      }
+    };
+    if (event.target.files && event.target.files.length > 0) {
+      fileReader.readAsText(event.target.files[0]);
+    }
+  };
+
   return (
     <div className="app">
       <div style={{ gridArea: "cal" }}>
-        <CalendarView events={events} importCSV={() => { }} exportCSV={() => { }} toggleSelectEvent={toggleSelectEvent} />
+        <CalendarView events={events} importCSV={() => { importEventsFromJSON() }} exportCSV={exportEventsToJSON} toggleSelectEvent={toggleSelectEvent} />
       </div>
       <div style={{ gridArea: "list", overflow: "scroll", padding: "1em" }}>
         <EventList events={events} colorMap={colors} toggleHideEvent={toggleHideEvent} toggleSelectEvent={toggleSelectEvent} removeEvent={removeEvent} modifyEvent={modifyEvent} />
