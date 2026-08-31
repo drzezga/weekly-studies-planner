@@ -1,6 +1,6 @@
 
 // Import CSS if your build tool supports it
-import '@event-calendar/core/index.css';
+// import '@event-calendar/core/index.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { MyEvent } from './App';
 import FullCalendar from '@fullcalendar/react';
